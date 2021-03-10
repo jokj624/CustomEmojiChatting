@@ -11,7 +11,7 @@ Media Interface Lab 2020-2 데모 프로젝트 중 일부인 커스텀 이모티
 ### 2. 채팅 구현 방법   
   * Node.js 와 Express를 이용해 서버 생성
   * Socket.io 를 이용해 실시간 통신
-  * multer-s3를 이용해 Aws S3 버킷에 전송 시 커스텀 이모티콘 이미지 저장 후 수신자에게 전송
+  * multer-s3를 이용해 이모티콘 전송 시 AWS S3 버킷에 커스텀 이모티콘 이미지 저장 후 수신자에게 전송
 
 ![image](https://user-images.githubusercontent.com/20807197/110667205-6411b580-820d-11eb-85af-7c55f2f8708b.png)
 
