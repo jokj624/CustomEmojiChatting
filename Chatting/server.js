@@ -1,25 +1,22 @@
-var express = require('express');
-var app = express(); 
-
-var http = require('http');
-var server = http.createServer(app);
-
-var socket = require('socket.io');
-
+const express = require('express');
+const socket = require('socket.io');
 const upload = require('./multer');
-var port = 4000;
-var socketList = [];
+
+const app = express(); 
+app.set('port', process.env.PORT || 4000);
+
+const http = require('http');
+const server = http.createServer(app);
+const io = socket(server); 
+
+let socketList = [];
+
 app.use(express.static(__dirname + '/public'));
-app.get('/', (request, response) => {
-    fs.readFile('./public/index.html', (error, data) => {
-      response.writeHead(200, { 'Content-Type': 'text/html' });
-      response.end(data);
-    });
-  })
-server.listen(port, function() {
+
+server.listen(4000, function() {
     console.log('Server On !');
 });
-var io = socket(server); 
+ 
 io.on('connection', function(socket) {
     socketList.push(socket);
     console.log('User Join');
@@ -46,7 +43,6 @@ io.on('connection', function(socket) {
 });
 app.post( '/image', upload.single("image"), function(req, res, next) {
     try {
-      // var file = './uploads' + req.file.filename;
       console.log(req.file)
       var data = req.file;
       res.send(data.location);
